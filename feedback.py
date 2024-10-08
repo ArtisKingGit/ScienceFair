@@ -6,7 +6,7 @@ import subprocess
 app = CTk()
 app.geometry("856x645")
 app.resizable(0, 0)
-app.title("School Bookshop")
+app.title("School Library")
 set_appearance_mode("light")
 
 # Function to open Orders.py

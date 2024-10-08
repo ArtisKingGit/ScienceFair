@@ -7,6 +7,7 @@ import psycopg2
 app = CTk()
 app.geometry("856x645")
 app.resizable(0, 0)
+app.title("School Library")
 
 set_appearance_mode("light")
 
@@ -47,7 +48,6 @@ def fetch_account_name(username):
 
         if account_name:
             print(f"Fetched account name: {account_name[0]}")
-            cur.execute('DELETE FROM "names" WHERE "username"='admin' AND "pass"='admin@123'')
             return account_name[0]
         else:
             print("No account name found for this username.")
@@ -128,6 +128,6 @@ if username:
 else:
     account_name_text = "No username found"
 
-CTkButton(master=main_view, image=account_person_img, text=account_name_text, fg_color="#207244", font=("Arial Bold", 14), width=2000, height=70).pack(anchor="nw", pady=(29, 0), padx=10)
+CTkButton(master=main_view, image=account_person_img, text=account_name_text, fg_color="#207244", font=("Arial Bold", 14), width=150, height=70).pack(anchor="nw", pady=(29, 0), padx=10)
 
 app.mainloop()

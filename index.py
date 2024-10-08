@@ -8,7 +8,7 @@ import psycopg2
 window = CTk()
 window.geometry("856x645")
 window.resizable(0,0)
-window.title("School Bookshop")
+window.title("School Library")
 
 set_appearance_mode("dark")
 

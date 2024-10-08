@@ -8,7 +8,7 @@ import psycopg2
 app = CTk()
 app.geometry("856x645")
 app.resizable(0,0)
-
+app.title("School Library")
 set_appearance_mode("light")
     
 def open_feedback():

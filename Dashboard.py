@@ -8,10 +8,17 @@ import psycopg2
 app = CTk()
 app.geometry("856x645")
 app.resizable(0,0)
-app.title("School Bookshop")
+app.title("School Library")
 
 set_appearance_mode("light") 
 
+def open_accounts():
+    try: 
+        subprocess.Popen(["python", "account.py"])
+        app.destroy()
+    except subprocess.CalledProcessError as e:
+        print("Error executing account.py", e)
+        
         
 def fetch_orders_data():
     try:
@@ -110,7 +117,7 @@ CTkButton(master=sidebar_frame, image=settings_img, text="Settings", fg_color="t
 #Account Signed in 
 person_img_data = Image.open("person_icon.png")
 person_img = CTkImage(dark_image=person_img_data, light_image=person_img_data)
-btn_accounts = CTkButton(master=sidebar_frame, image=person_img, text="Account", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w").pack(anchor="center", ipady=5, pady=(160, 0))
+btn_accounts = CTkButton(master=sidebar_frame, image=person_img, text="Account", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w",command=open_accounts).pack(anchor="center", ipady=5, pady=(160, 0))
 
 #Left Pannel
 main_view = CTkFrame(master=app, fg_color="#fff",  width=680, height=650, corner_radius=0)

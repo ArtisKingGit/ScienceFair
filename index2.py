@@ -6,7 +6,7 @@ import psycopg2
 
 # Create the main login window
 Login_Form = CTk()
-Login_Form.title("School Bookshop Login")
+Login_Form.title("School Library Login")
 Login_Form.geometry("856x645")
 set_appearance_mode("dark")
 # Function to call Dashboard.py and destroy the login window
