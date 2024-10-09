@@ -120,7 +120,7 @@ main_view.pack(side="left")
 
 CTkLabel(master=main_view, text="Thank you for Confirming your order!", font=("Arial Black", 25), text_color="#2A8C55").pack(anchor="nw", pady=(29, 0), padx=27)
 CTkLabel(master=main_view, text="Submit your feedback if needed to.", font=("Arial Black", 20), text_color="#2A8C55").pack(anchor="nw", pady=(30, 0), padx=27)
-
+CTkLabel(master=main_view, text="Orders submitted:", font=("Arial Black", 20), text_color="#2A8C55").pack(anchor="nw", pady=(33, 0), padx=27)
 # Fetch and display table data from the database
 table_data = fetch_orders_data()
 

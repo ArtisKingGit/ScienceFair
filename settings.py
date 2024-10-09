@@ -63,6 +63,14 @@ def open_map():
     except subprocess.CalledProcessError as e:
         print("Error executing map.", e)
         
+def open_feedback_view():
+    app.destroy()
+    try:
+        subprocess.Popen(["python", "feedback_view.py"])
+        
+    except subprocess.CalledProcessError as e:
+        print("Error executing the Feedback View", e)
+        
         
  
 #Sidebar- main
@@ -122,6 +130,7 @@ CTkLabel(master = main_view, text = "Change mode", font = ("Arial Bold", 17),tex
 
 combobox_light = CTkComboBox(master = main_view, values=["Light mode", "Dark mode"], border_width= 1, border_color= "#207244", command= change_mode).pack(anchor = "nw", pady = (34,0), padx = 24)
 
-CTkButton(master = main_view, text = "Map", font=("Arial Black", 25), text_color="#207244", border_color="#207244", border_width=1, hover_color="#5c5e5e").pack(anchor="nw", pady=(29,0), padx=24)
+CTkButton(master = main_view, text = "Map", font=("Arial Black", 25),bg_color= "#FFF", text_color="#207244", border_color="#207244", border_width=1, hover_color="#5c5e5e", command= open_map).pack(anchor="nw", pady=(29,0), padx=24)
+CTkButton(master = main_view, text = "View Feedback", font=("Arial Black", 25), text_color="#207244", border_color="#207244", border_width=1, hover_color="#5c5e5e", command=open_feedback_view).pack(anchor="nw", pady=(29,0), padx=24)
 
 app.mainloop()

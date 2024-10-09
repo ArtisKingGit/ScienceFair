@@ -66,6 +66,7 @@ def other_page():
             cur.execute('INSERT INTO orders_(order_name, customer_name, address_name, quantity) VALUES (%s, %s, %s, %s)', (itemname_value, customername_value, addressname_value, quantity))
             conn.commit()  # Commit the transaction
             subprocess.Popen(["python", "Orders_second.py"])
+            app.destroy()
 
         except Exception as e:
             print(f"Error launching Orders_second.py: {e}")

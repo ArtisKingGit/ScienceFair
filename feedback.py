@@ -1,6 +1,8 @@
 from customtkinter import *
 from PIL import Image
 import subprocess
+from tkinter import messagebox
+import psycopg2
 
 # Create the tkinter app instance
 app = CTk()
@@ -15,8 +17,7 @@ def open_orders():
     try:
         subprocess.Popen(["python", "Orders.py"])
     except subprocess.CalledProcessError as e:
-        print("Error executing Dashboard.py:", e)
-
+        print("Error executing Orders.py:", e)
 
 # Function to open Settings.py
 def open_settings():
@@ -24,7 +25,32 @@ def open_settings():
     try:
         subprocess.Popen(["python", "settings.py"])
     except subprocess.CalledProcessError as e:
-        print("Error executing Dashboard.py:", e)
+        print("Error executing Settings.py:", e)
+
+def submit_feedback():
+    name = name_entry.get()
+    email = email_entry.get()
+    feedback = feedback_entry.get()
+
+    if name == "" or email == "" or feedback == "":
+        messagebox.showwarning("Warning", "Input fields are empty")
+    else:
+        try:
+            conn = psycopg2.connect("dbname='postgres' user='postgres' password='asdfghj3' host='localhost' port='5432'")
+            cur = conn.cursor()
+            cur.execute('INSERT INTO feedback(name_, email, feedback) VALUES (%s, %s, %s)', (name, email, feedback))
+            conn.commit()  # Commit the transaction
+            subprocess.Popen(["python", "Orders_second.py"])
+            app.destroy()
+
+        except Exception as e:
+            print(f"Error launching Orders_second.py: {e}")
+        
+        finally:
+            if cur:
+                cur.close()
+            if conn:
+                conn.close()
 
 # Function to open Returns.py
 def open_returns():
@@ -32,7 +58,7 @@ def open_returns():
     try:
         subprocess.Popen(["python", "returns.py"])
     except subprocess.CalledProcessError as e:
-        print("Error executing Dashboard.py:", e)
+        print("Error executing Returns.py:", e)
 
 # Function to open Dashboard.py
 def open_dashboard():
@@ -89,20 +115,26 @@ main_view.pack(side="left")
 
 CTkLabel(master=main_view, text="Submit Customer Feedback", font=("Arial Black", 25), text_color="#2A8C55").pack(anchor="nw", pady=(29, 0), padx=10)
 
-CTkEntry(master=main_view, placeholder_text="Enter name...", font=("Arial Bold", 15), width=300, border_width=3, border_color="#207244").pack(anchor="nw", pady=(33, 0), padx=10)
+name_entry = CTkEntry(master=main_view, placeholder_text="Enter name...", font=("Arial Bold", 15), width=300, border_width=3, border_color="#207244")
+name_entry.pack(anchor="nw", pady=(33, 0), padx=10)
 
-CTkEntry(master=main_view, placeholder_text="Enter email...", font=("Arial Bold", 15), width=300, border_width=3, border_color="#207244").pack(anchor="nw", pady=(34, 0), padx=10)
+email_entry = CTkEntry(master=main_view, placeholder_text="Enter email...", font=("Arial Bold", 15), width=300, border_width=3, border_color="#207244")
+email_entry.pack(anchor="nw", pady=(34, 0), padx=10)
 
 CTkLabel(master=main_view, font=("Arial Bold", 18), text="Nature of the feedback", text_color="#2A8C55").pack(anchor="nw", pady=(34, 0), padx=10)
 
 options = ["Report a bug", "State an Issue", "Concerns", "Improve on an area", "Other"]
-CTkComboBox(master=main_view, values=options, border_width=1, border_color="#207244").pack(anchor="nw", pady=(35, 0), padx=10)
+combobox = CTkComboBox(master=main_view, values=options, border_width=1, border_color="#207244")
+combobox.pack(anchor="nw", pady=(35, 0), padx=10)
 
-CTkTextbox(master=main_view, width=1000, border_color="#207244", border_width=5, scrollbar_button_color="#207244", corner_radius=16).pack(anchor="w", pady=(40, 0), padx=10)
+feedback_entry = CTkEntry(master=main_view, width=1000, height=200, border_color="#207244", border_width=5, corner_radius=16)
+feedback_entry.pack(anchor="w", pady=(40, 0), padx=10)
 
 message_img_data = Image.open("message_icon.png")
 message_img = CTkImage(dark_image=message_img_data, light_image=message_img_data)
-CTkButton(master=main_view, width=100, height=50, border_color="#207244", hover_color="#00A34F", corner_radius=15, text="Submit Feedback", fg_color="#207244", image=message_img, font=("Arial Bold", 14), anchor="w").pack(anchor="w", pady=(41, 0), padx=10)
+
+button = CTkButton(master=main_view, width=100, height=50, border_color="#207244", hover_color="#00A34F", corner_radius=15, text="Submit Feedback", fg_color="#207244", image=message_img, font=("Arial Bold", 14), anchor="w", command=submit_feedback)
+button.pack(anchor="w", pady=(41, 0), padx=10)
 
 # Start the tkinter main loop
 app.mainloop()

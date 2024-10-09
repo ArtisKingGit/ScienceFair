@@ -3,6 +3,7 @@ from tkinter import *
 from PIL import Image
 from subprocess import call
 from tkintermapview import *
+import tkintermapview
 
 app = CTk()
 app.geometry("856x645")
@@ -10,10 +11,7 @@ app.resizable(0,0)
 
 set_appearance_mode("light")
 
-def test():
-    main_view = CTkFrame(master=call(["python", "Dashboard.py"]), fg_color="#fff",  width=680, height=650, corner_radius=0)
-    main_view.pack_propagate(0)
-    main_view.pack(side="left")
+
     
 #Sidebar- main
 sidebar_frame = CTkFrame(master=app, fg_color="#2A8C55",  width=176, height=650, corner_radius=0)
@@ -28,7 +26,7 @@ CTkLabel(master=sidebar_frame, text="", image=logo_img).pack(pady=(38, 0), ancho
 #Dashboard
 analytics_img_data = Image.open("analytics_icon.png")
 analytics_img = CTkImage(dark_image=analytics_img_data, light_image=analytics_img_data)
-CTkButton(master=sidebar_frame, image=analytics_img, text="Dashboard", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w", command= test).pack(anchor="center", ipady=5, pady=(60, 0))
+CTkButton(master=sidebar_frame, image=analytics_img, text="Dashboard", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w").pack(anchor="center", ipady=5, pady=(60, 0))
 
 #Feedback
 feedback_img_data = Image.open("feedback_icon.png")
