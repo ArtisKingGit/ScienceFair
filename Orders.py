@@ -63,9 +63,9 @@ def other_page():
         try:
             conn = psycopg2.connect("dbname='postgres' user='postgres' password='asdfghj3' host='localhost' port='5432'")
             cur = conn.cursor()
-            cur.execute('INSERT INTO orders(order_name, customer_name, address_name, quantity) VALUES (%s, %s, %s, %s)', (itemname_value, customername_value, addressname_value, quantity))
+            cur.execute('INSERT INTO orders_(order_name, customer_name, address_name, quantity) VALUES (%s, %s, %s, %s)', (itemname_value, customername_value, addressname_value, quantity))
             conn.commit()  # Commit the transaction
-            subprocess.Popen(["python", "/Users/beginner/Desktop/Advanced Arthur/Python-Advanced-main/Orders_second.py"])
+            subprocess.Popen(["python", "Orders_second.py"])
 
         except Exception as e:
             print(f"Error launching Orders_second.py: {e}")

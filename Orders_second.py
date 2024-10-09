@@ -4,6 +4,7 @@ from PIL import Image
 import subprocess
 from CTkTable import *
 import psycopg2
+from tkinter import messagebox
 
 # Connect to database and fetch data
 def fetch_orders_data():
@@ -12,7 +13,7 @@ def fetch_orders_data():
         cur = conn.cursor()
 
         # Execute the query to fetch data from the orders table
-        cur.execute('SELECT order_name, customer_name, address_name, quantity FROM orders')
+        cur.execute('SELECT order_name, customer_name, address_name, quantity FROM orders_')
 
         # Fetch all rows
         orders_data = cur.fetchall()
