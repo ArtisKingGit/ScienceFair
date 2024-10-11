@@ -10,6 +10,13 @@ Login_Form.title("School Library Login")
 Login_Form.geometry("856x645")
 set_appearance_mode("dark")
 # Function to call Dashboard.py and destroy the login window
+def open_accounts():
+    try: 
+        subprocess.Popen(["python", "account.py"])
+        Login_Form.destroy()
+    except subprocess.CalledProcessError as e:
+        print("Error executing account.py", e)
+        
 def call():
     Login_Form.destroy()
     try:

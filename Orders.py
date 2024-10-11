@@ -10,7 +10,14 @@ app.geometry("856x645")
 app.resizable(0,0)
 app.title("School Library")
 set_appearance_mode("light")
-    
+
+def open_accounts():
+    try: 
+        subprocess.Popen(["python", "account.py"])
+        app.destroy()
+    except subprocess.CalledProcessError as e:
+        print("Error executing account.py", e)
+        
 def open_feedback():
     app.destroy()
     try:

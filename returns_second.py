@@ -13,7 +13,13 @@ app.title("School Library")
 set_appearance_mode("light")
     
 ###########The Left hand side panel with the apps are in here -->>###########
-
+def open_accounts():
+    try: 
+        subprocess.Popen(["python", "account.py"])
+        app.destroy()
+    except subprocess.CalledProcessError as e:
+        print("Error executing account.py", e)
+        
 def open_orders():
     app.destroy()
     try:

@@ -11,7 +11,13 @@ app.resizable(0, 0)
 app.title("School Library")
 set_appearance_mode("light")
 
-
+def open_accounts():
+    try: 
+        subprocess.Popen(["python", "account.py"])
+        app.destroy()
+    except subprocess.CalledProcessError as e:
+        print("Error executing account.py", e)
+        
 # Function to open Settings.py
 def open_settings():
     app.destroy()
@@ -94,7 +100,7 @@ CTkButton(master=sidebar_frame, image=settings_img, text="Settings", fg_color="t
 # Account button
 person_img_data = Image.open("person_icon.png")
 person_img = CTkImage(dark_image=person_img_data, light_image=person_img_data)
-CTkButton(master=sidebar_frame, image=person_img, text="Account", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w").pack(anchor="center", ipady=5, pady=(160, 0))
+CTkButton(master=sidebar_frame, image=person_img, text="Account", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w",command=open_accounts).pack(anchor="center", ipady=5, pady=(160, 0))
 
 # Main view for feedback form
 main_view = CTkFrame(master=app, fg_color="#fff", width=680, height=650, corner_radius=0)

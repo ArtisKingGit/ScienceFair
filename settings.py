@@ -27,6 +27,13 @@ def change_mode(choice):
     elif darkmode_set == False:
         main_view.configure(master=app, fg_color="#fff",  width=680, height=650, corner_radius=0)
         
+def open_accounts():
+    try: 
+        subprocess.Popen(["python", "account.py"])
+        app.destroy()
+    except subprocess.CalledProcessError as e:
+        print("Error executing account.py", e)
+        
 def open_orders():
     app.destroy()
     try:

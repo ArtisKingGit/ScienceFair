@@ -25,7 +25,12 @@ img_logo_data = Image.open("poopoo.jpeg")
 img_logo = CTkImage(dark_image=img_logo_data, light_image=img_logo_data, size=(330, 650))
 CTkLabel(master=sidebar_frame, text="", image=img_logo).pack(anchor="center")
 
-
+def open_accounts():
+    try: 
+        subprocess.Popen(["python", "account.py"])
+        window.destroy()
+    except subprocess.CalledProcessError as e:
+        print("Error executing account.py", e)
 # Function to open login form
 def call():
     window.destroy()  # Destroy the main window

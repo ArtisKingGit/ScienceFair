@@ -1,7 +1,7 @@
 from customtkinter import *
 from tkinter import *
 from PIL import Image
-from subprocess import call
+import subprocess
 from tkintermapview import *
 import tkintermapview
 
@@ -10,7 +10,12 @@ app.geometry("856x645")
 app.resizable(0,0)
 
 set_appearance_mode("light")
-
+def open_accounts():
+    try: 
+        subprocess.Popen(["python", "account.py"])
+        app.destroy()
+    except subprocess.CalledProcessError as e:
+        print("Error executing account.py", e)
 
     
 #Sidebar- main
@@ -33,11 +38,6 @@ feedback_img_data = Image.open("feedback_icon.png")
 feedback_img = CTkImage(dark_image= feedback_img_data, light_image= feedback_img_data)
 CTkButton(master = sidebar_frame, image = feedback_img, text = "Feedback", fg_color= "transparent", font = ("Arial Bold", 14), hover_color="#207244", anchor = "w",).pack(anchor = "center", ipady =5, pady = (16, 0 ))
  
-#Orders
-package_img_data = Image.open("package_icon.png")
-package_img = CTkImage(dark_image=package_img_data, light_image=package_img_data)
-CTkButton(master=sidebar_frame, image=package_img, text="Orders", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w").pack(anchor="center", ipady=5, pady=(16, 0))
-
 #The order lists
 list_img_data = Image.open("list_icon.png")
 list_img = CTkImage(dark_image=list_img_data, light_image=list_img_data)
@@ -57,7 +57,7 @@ CTkButton(master=sidebar_frame, image=settings_img, text="Settings", fg_color="t
 person_img_data = Image.open("person_icon.png")
 person_img = CTkImage(dark_image=person_img_data, light_image=person_img_data)
 
-CTkButton(master=sidebar_frame, image=person_img, text="Account", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w").pack(anchor="center", ipady=5, pady=(160, 0))
+CTkButton(master=sidebar_frame, image=person_img, text="Account", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w",command=open_accounts).pack(anchor="center", ipady=5, pady=(160, 0))
 widget = TkinterMapView(app, width =600, height = 400)
 widget.pack(fill = "both", expand=True)
 

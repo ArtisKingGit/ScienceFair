@@ -6,6 +6,12 @@ from CTkTable import *
 import psycopg2
 from tkinter import messagebox
 
+def open_accounts():
+    try: 
+        subprocess.Popen(["python", "account.py"])
+        app.destroy()
+    except subprocess.CalledProcessError as e:
+        print("Error executing account.py", e)
 # Connect to database and fetch data
 def fetch_orders_data():
     try:

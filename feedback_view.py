@@ -65,6 +65,13 @@ def open_returns():
     except subprocess.CalledProcessError as e:
         print("Error executing Dashboard.py:", e)
 
+def open_accounts():
+    try: 
+        subprocess.Popen(["python", "account.py"])
+        app.destroy()
+    except subprocess.CalledProcessError as e:
+        print("Error executing account.py", e)
+
     
 sidebar_frame = CTkFrame(master=app, fg_color="#2A8C55", width=176, height=650, corner_radius=0)
 sidebar_frame.pack_propagate(0)
