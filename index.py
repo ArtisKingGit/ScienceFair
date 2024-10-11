@@ -48,6 +48,14 @@ def opensecondarywindow():
 
     if username == "" or password == "" or password_confirm == "":
         messagebox.showwarning("Warning", "Input fields are empty")
+        regist_entry.focus()
+        
+    elif len(username) <=8 or len(password) <=8 or len(password_confirm <= 8):
+        messagebox.showwarning("Warning", "Characters must be more than 8 Characters")
+
+    elif len(username) >14 or len(password) >14 or len(password_confirm > 14):
+        messagebox.showwarning("Warning", "Characters must be less than 14 Characters")
+        
     else:
         try:
             conn = psycopg2.connect("dbname='postgres' user='postgres' password='asdfghj3' host='localhost' port='5432'")
@@ -100,6 +108,7 @@ def login_attempt(username, password):
             cur.close()
         if conn:
             conn.close()
+            
 
 
 # Widgets for registration form
@@ -126,6 +135,5 @@ grid.pack(pady=10)
 btn_regist.pack(pady=(50, 10), anchor="center")
 grid.pack(pady=(10, 50), anchor="center")
 
-window.bind("<Return>", )
 
 window.mainloop()

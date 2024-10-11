@@ -55,13 +55,13 @@ def fetch_orders_data():
         cur = conn.cursor()
 
         # Execute the query to fetch data from the orders table
-        cur.execute('SELECT customer_name, items_name, item_quantity, address_name FROM orders_')
+        cur.execute('SELECT customer_name, items_name, item_quantity, address_name FROM returns_')
 
         # Fetch all rows
         orders_data = cur.fetchall()
         
         # Add header to the data
-        table_data = [["Order Name", "Customer Name", "Address", "Quantity"]] + [list(row) for row in orders_data]
+        table_data = [["Customer Name", "Item Name", "Item Quantity", "Address"]] + [list(row) for row in orders_data]
 
         return table_data
     except psycopg2.DatabaseError as e:
@@ -120,6 +120,15 @@ main_view.pack(side="left")
 CTkLabel(master= main_view, text = "Thank You! For returning your product", font = ("Arial Bold", 25), text_color= "#207244").pack(anchor = "nw", pady= (20, 0), padx = 24)
 CTkLabel(master= main_view, text = """If you want to submit feedback, go to the feedback 
          page.""", font = ("Arial Bold", 25), text_color= "#207244").pack(anchor = "nw", pady= (20, 0), padx = 24)
+CTkLabel(master= main_view, text = "Returns:", font = ("Arial Bold", 25), text_color= "#207244").pack(anchor = "nw", pady= (20, 0), padx = 24)
 
+table_data = fetch_orders_data()
+
+table_frame = CTkScrollableFrame(master=main_view, fg_color="transparent")
+table_frame.pack(expand=True, fill="both", padx=27, pady=21)
+
+table = CTkTable(master=table_frame, values=table_data, colors=["#E6E6E6", "#EEEEEE"], header_color="#2A8C55", hover_color="#B4B4B4")
+table.edit_row(0, text_color="#fff", hover_color="#2A8C55")
+table.pack(expand=True)
 
 app.mainloop()

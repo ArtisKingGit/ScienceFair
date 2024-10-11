@@ -13,6 +13,23 @@ app.title("School Library")
 set_appearance_mode("light")
     
 ###########The Left hand side panel with the apps are in here -->>###########
+quauntity_frame_no = 1
+def quauntity_frame_count():
+    global quauntity_frame_no
+    quauntity_frame_no += 1
+    lbl_quantity_count.configure(text = str(quauntity_frame_no))
+
+def quantity_frame_count_subtraction():
+    global quauntity_frame_no
+    quauntity_frame_no -= 1
+    lbl_quantity_count.configure(text = str(quauntity_frame_no))
+    
+def call():
+    try:
+        subprocess.Popen(["python", "returns_second.py"])
+    except subprocess.CalledProcessError as e:
+        print("Error executing returns_second.py", e)
+        
 def open_accounts():
     try: 
         subprocess.Popen(["python", "account.py"])
@@ -52,7 +69,7 @@ def open_dashboard():
 def other_page():
     customer_name = customer_name_value.get()
     item_name = combobox.get()
-    item_quantity = item_quantity_value.get()
+    item_quantity = quauntity_frame_no
     address_name = address_value.get()
 
     if customer_name == "" or item_name == "" or item_quantity == "" or address_name =="":
@@ -63,9 +80,16 @@ def other_page():
             cur = conn.cursor()
             cur.execute('INSERT INTO returns_(customer_name, items_name, item_quantity, address_name) VALUES (%s, %s, %s, %s)', (customer_name, item_name, item_quantity, address_name ))
             conn.commit()  # Commit the transaction
-
+            call()
+            
         except Exception as e:
             print(f"Error launching Orders_second.py: {e}")
+        
+        finally:
+            if conn:
+                conn.close()
+            if cur:
+                cur.close()
 
 #Sidebar- main
 sidebar_frame = CTkFrame(master=app, fg_color="#2A8C55",  width=176, height=650, corner_radius=0)
@@ -122,13 +146,22 @@ CTkLabel(master= main_view, text = "Returns", font = ("Arial Bold", 25), text_co
 customer_name_value = CTkEntry(master = main_view, placeholder_text= "Customer name...", width = 250, font = ("Arial Bold", 14), border_width= 3, border_color= "#207244")
 customer_name_value.pack(anchor = "nw", pady =(22, 0), padx = 24)
 
-combobox_values = ["Pencil", "Chemistry book", "Debit Card", "Mackbook pro", "Camera", "Printer", "Smartwatch", "Football", "Monitor", "External hard drive", "Other"]
+combobox_values = ["Biolgy KLB", "Chemistry KLB", "Physics KLB", "Mathematics KLB", "English KLB", "Kiswahili KLB", "History KLB", "Geography KLB", "CRE KLB", "Inventor Business", "Music KLB"]
 
 combobox = CTkComboBox(master = main_view, values= combobox_values, width = 150,border_width= 3, border_color= "#207244")
 combobox.pack(anchor = "nw", pady = (23,0), padx = 24)
 
-item_quantity_value = CTkEntry(master = main_view, placeholder_text= "Item quantity...", width = 250, font = ("Arial Bold", 14), border_width= 3, border_color= "#207244")
-item_quantity_value.pack(anchor = "nw", pady =(23, 0), padx = 24)
+#item_quantity_value = CTkEntry(master = main_view, placeholder_text= "Item quantity...", width = 250, font = ("Arial Bold", 14), border_width= 3, border_color= "#207244")
+#item_quantity_value.pack(anchor = "nw", pady =(23, 0), padx = 24)
+quantity_frame = CTkFrame(master=main_view, fg_color="transparent",height=100,width=100, corner_radius=5)
+quantity_frame.pack(anchor="nw", padx=24)
+
+CTkLabel(master=quantity_frame, text="Quantity",text_color="#207244",font=("Arial Bold", 16)).pack(side="left", anchor="nw", padx=0,pady =(23, 0))
+CTkButton(master=quantity_frame, text="-", width=25, fg_color="#2A8C55", hover_color="#207244", font=("Arial Black", 16), command=quantity_frame_count_subtraction).pack(side="left", anchor="nw",pady =(23, 0))
+lbl_quantity_count = CTkLabel(master=quantity_frame, text="01", text_color="#2A8C55", font=("Arial Black", 16))
+lbl_quantity_count.pack(side="left", anchor="nw", padx=10,pady =(23, 0))
+CTkButton(master=quantity_frame, text="+", width=25,  fg_color="#2A8C55",hover_color="#207244", font=("Arial Black", 16),command= quauntity_frame_count).pack(side="left", anchor="nw",pady =(23, 0))
+
 
 address_value = CTkEntry(master = main_view, placeholder_text= "Your address...", width = 250, font = ("Arial Bold", 14), border_width= 3, border_color= "#207244")
 address_value.pack(anchor = "nw", pady =(24, 0), padx = 24)
