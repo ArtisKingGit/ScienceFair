@@ -27,6 +27,7 @@ def quantity_frame_count_subtraction():
 def call():
     try:
         subprocess.Popen(["python", "returns_second.py"])
+        app.destroy()
     except subprocess.CalledProcessError as e:
         print("Error executing returns_second.py", e)
         
