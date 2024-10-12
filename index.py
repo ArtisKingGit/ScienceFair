@@ -10,20 +10,20 @@ window.geometry("856x645")
 window.resizable(0,0)
 window.title("School Library")
 
-set_appearance_mode("dark")
+set_appearance_mode("light")
 
-sidebar_frame = CTkFrame(master=window, fg_color="transparent", width=330, height=645, corner_radius=10)
+sidebar_frame = CTkFrame(master=window, fg_color="#207244", width=330, height=645, corner_radius=10)
 sidebar_frame.pack_propagate(0)
 sidebar_frame.pack(anchor="nw", side="left")
 
-sidebar_frame2 = CTkFrame(master=window, fg_color="transparent", width=526, height=645, corner_radius=10, border_color="#000", border_width=5)
+sidebar_frame2 = CTkFrame(master=window, fg_color="#FFF", width=526, height=645, corner_radius=10,)
 sidebar_frame2.pack_propagate(0)
 sidebar_frame2.pack(fill="y", anchor="center")
 
 
-img_logo_data = Image.open("poopoo.jpeg")
-img_logo = CTkImage(dark_image=img_logo_data, light_image=img_logo_data, size=(330, 650))
-CTkLabel(master=sidebar_frame, text="", image=img_logo).pack(anchor="center")
+#img_logo_data = Image.open("poopoo.jpeg")
+#img_logo = CTkImage(dark_image=img_logo_data, light_image=img_logo_data, size=(330, 650))
+#CTkLabel(master=sidebar_frame, text="", image=img_logo).pack(anchor="center")
 
 def open_accounts():
     try: 
@@ -115,20 +115,20 @@ def login_attempt(username, password):
 lbl_welcome =CTkLabel(master=sidebar_frame2, text="Register Your User", font=("Arial", 30))
 lbl_welcome.pack(pady=50)
 
-regist_entry = CTkEntry(sidebar_frame2, width=400,height=40,border_width=3, placeholder_text="Enter username...", border_color="#207244", corner_radius= 10,)
+regist_entry = CTkEntry(sidebar_frame2, width=400,height=40,border_width=0, placeholder_text="Enter username...", border_color="#207244",fg_color="#F0F0F0")
 regist_entry.pack(pady=10)
 
-registpass_entry = CTkEntry(sidebar_frame2, width=400,height=40,border_width=3, placeholder_text="Enter password...", border_color="#207244", corner_radius= 10, show = "*")
+registpass_entry = CTkEntry(sidebar_frame2,fg_color="#F0F0F0",border_width=0, width=400,height=40, placeholder_text="Enter password...",  show = "*")
 registpass_entry.pack(pady=10)
 
-registpassconfirm_entry = CTkEntry(sidebar_frame2, width=400,height=40, border_width=3,placeholder_text="Confirm password...", border_color="#201244",corner_radius= 10, show = "*")
+registpassconfirm_entry = CTkEntry(sidebar_frame2,fg_color="#F0F0F0",width=400,height=40, border_width=0,placeholder_text="Confirm password...", show = "*")
 registpassconfirm_entry.pack(pady=10)
 
 img_regist = Image.open("register.png")
-btn_regist = CTkButton(sidebar_frame2, width=300,height=40,border_spacing= 10,text_color="Black", font=("Arial", 20), fg_color="#fff", border_width=3, border_color="#207244", text="Register",corner_radius= 10,image=CTkImage(dark_image= img_regist), command=opensecondarywindow)
+btn_regist = CTkButton(sidebar_frame2, width=300,height=40,border_spacing= 10,text_color="Black", font=("Arial", 20), fg_color="#fff", border_width=3, border_color="#207244",hover_color="#268750", text="Register",corner_radius= 10,image=CTkImage(dark_image= img_regist), command=opensecondarywindow)
 btn_regist.pack(pady=50)
 
-grid = CTkButton(sidebar_frame2, text_color="Black",height=20, width=300, font=("Arial", 16), text="Already have an account? Sign in here", fg_color="#fff", border_width=3,corner_radius= 10, border_color="#207244", command=call)
+grid = CTkButton(sidebar_frame2, text_color="Black",height=20, width=300, font=("Arial", 16), text="Already have an account? Sign in here", fg_color="#fff", border_width=3,corner_radius= 10, hover_color="#268750",border_color="#207244", command=call)
 grid.pack(pady=10)
 
 # Centering buttons

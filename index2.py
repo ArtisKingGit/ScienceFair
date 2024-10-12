@@ -8,7 +8,7 @@ import psycopg2
 Login_Form = CTk()
 Login_Form.title("School Library Login")
 Login_Form.geometry("856x645")
-set_appearance_mode("dark")
+set_appearance_mode("light")
 # Function to call Dashboard.py and destroy the login window
 def open_accounts():
     try: 
@@ -70,21 +70,21 @@ def keyhandlerfunction(event):
 
             
 # Sidebar frames and widgets
-sidebar_frame2 = CTkFrame(master=Login_Form, fg_color="transparent", width=526, height=645, corner_radius=10, border_color="#000", border_width=5)
+sidebar_frame2 = CTkFrame(master=Login_Form, fg_color="#FFF", width=526, height=645, corner_radius=10)
 sidebar_frame2.pack_propagate(0)
 sidebar_frame2.pack(anchor="ne", side="right")
 
-sidebar_frame = CTkFrame(master=Login_Form, fg_color="transparent", width=330, height=645, corner_radius=10)
+sidebar_frame = CTkFrame(master=Login_Form, fg_color="#207244", width=330, height=645, corner_radius=10)
 sidebar_frame.pack_propagate(0)
 sidebar_frame.pack(anchor="nw", side="left")
 
 lbl_welcome =CTkLabel(master=sidebar_frame2, text="Welcome Back!", font=("Arial",40) )
 lbl_welcome.pack(pady=50, padx = 10)
 
-login_entry = CTkEntry(master=sidebar_frame2, width=300, placeholder_text="Enter username...", corner_radius=10)
+login_entry = CTkEntry(master=sidebar_frame2, width=400,height=40, placeholder_text="Enter username...", corner_radius=10)
 login_entry.pack(pady=10)
 
-password_entry = CTkEntry(master=sidebar_frame2, width=300, placeholder_text="Enter password...", show="*", corner_radius= 10)
+password_entry = CTkEntry(master=sidebar_frame2, width=400,height=40, placeholder_text="Enter password...", show="*", corner_radius= 10)
 password_entry.pack(pady=10)
 
 btn_login2 = CTkButton(master=sidebar_frame2,hover_color= "#b5b5b5", width=300, height= 40, font=("Arial", 16), text_color="Black", fg_color="#fff", border_width=3,corner_radius=10, border_color="#207244", text="Login", command=lambda: login_attempt(login_entry.get(), password_entry.get()))
@@ -105,9 +105,9 @@ btn_login4.pack(pady=10)
 btn_login5 = CTkButton(master=sidebar_frame2,hover_color= "#b5b5b5",  width=300, height= 10, font=("Arial", 16), text_color="Black", fg_color="#fff", border_width=3,corner_radius=100, border_color="#207244", text="Don't have an account? Create an Account", command = call2)
 btn_login5.pack(pady=10)
 
-img_logo_data = Image.open("MuchaTseBle.jpeg")
-img_logo = CTkImage(dark_image=img_logo_data, light_image=img_logo_data, size=(330, 650))
-CTkLabel(master=sidebar_frame, text="", image=img_logo).pack(anchor="center")
+#img_logo_data = Image.open("MuchaTseBle.jpeg")
+#img_logo = CTkImage(dark_image=img_logo_data, light_image=img_logo_data, size=(330, 650))
+#CTkLabel(master=sidebar_frame, text="", image=img_logo).pack(anchor="center")
 
 Login_Form.bind("<Return>", keyhandlerfunction)
 

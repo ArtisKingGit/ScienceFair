@@ -4,3 +4,5 @@ SELECT * FROM returns_;
 SELECT * FROM names;
 
 SELECT * FROM orders_;
+
+SELECT * FROM feedback;
