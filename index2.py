@@ -27,7 +27,7 @@ def call():
 def call2():
     Login_Form.destroy()
     try:
-        subprocess.Popen(["python", "/Users/beginner/Desktop/Advanced Arthur/Python-Advanced-main/index.py"])
+        subprocess.Popen(["python", "index.py"])
     except subprocess.CalledProcessError as e:
         print("Error executing index.py:", e)
 
@@ -81,10 +81,10 @@ sidebar_frame.pack(anchor="nw", side="left")
 lbl_welcome =CTkLabel(master=sidebar_frame2, text="Welcome Back!", font=("Arial",40) )
 lbl_welcome.pack(pady=50, padx = 10)
 
-login_entry = CTkEntry(master=sidebar_frame2, width=400,height=40, placeholder_text="Enter username...", corner_radius=10)
+login_entry = CTkEntry(master=sidebar_frame2, width=400,height=40, placeholder_text="Enter username...", corner_radius=10,border_width=0, fg_color="#F0F0F0")
 login_entry.pack(pady=10)
 
-password_entry = CTkEntry(master=sidebar_frame2, width=400,height=40, placeholder_text="Enter password...", show="*", corner_radius= 10)
+password_entry = CTkEntry(master=sidebar_frame2, width=400,height=40, placeholder_text="Enter password...",border_width=0,fg_color="#F0F0F0", show="*", corner_radius= 10)
 password_entry.pack(pady=10)
 
 btn_login2 = CTkButton(master=sidebar_frame2,hover_color= "#b5b5b5", width=300, height= 40, font=("Arial", 16), text_color="Black", fg_color="#fff", border_width=3,corner_radius=10, border_color="#207244", text="Login", command=lambda: login_attempt(login_entry.get(), password_entry.get()))
@@ -102,7 +102,7 @@ img_apple = Image.open("apple.png")
 btn_login4 = CTkButton(master=sidebar_frame2,hover_color= "#b5b5b5", width=300, height= 40, font=("Arial", 16), text_color="Black", fg_color="#fff", border_width=3,corner_radius=10, border_color="#207244", text="Login with Apple", image=CTkImage(dark_image=img_apple))
 btn_login4.pack(pady=10)
 
-btn_login5 = CTkButton(master=sidebar_frame2,hover_color= "#b5b5b5",  width=300, height= 10, font=("Arial", 16), text_color="Black", fg_color="#fff", border_width=3,corner_radius=100, border_color="#207244", text="Don't have an account? Create an Account", command = call2)
+btn_login5 = CTkButton(master=sidebar_frame2,hover_color= "#268750",  width=300, height= 10, font=("Arial", 16), text_color="Black", fg_color="#fff", border_width=3,corner_radius=100, border_color="#207244", text="Don't have an account? Create an Account", command = call2)
 btn_login5.pack(pady=10)
 
 #img_logo_data = Image.open("MuchaTseBle.jpeg")

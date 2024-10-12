@@ -79,11 +79,9 @@ CTkLabel(master=sidebar_frame, text="", image=logo_img).pack(pady=(38, 0), ancho
 buttons = [
     ("Dashboard", "analytics_icon.png", open_dashboard),
     ("Feedback", "feedback_icon.png", open_feedback),
-    ("Orders", "package_icon.png", None),
-    ("Orders", "list_icon.png", None),
     ("Returns", "returns_icon.png", open_returns),
     ("Settings", "settings_icon.png", open_settings),
-    ("Account", "person_icon.png", None),
+    ("Account", "person_icon.png", open_accounts),
 ]
 
 for text, img_name, command in buttons:
@@ -97,8 +95,11 @@ main_view = CTkFrame(master=app, fg_color="#fff", width=680, height=650, corner_
 main_view.pack_propagate(0)
 main_view.pack(side="left")
 
-CTkLabel(master=main_view, text="Thank you for Confirming your order!", font=("Arial Black", 25), text_color="#2A8C55").pack(anchor="nw", pady=(29, 0), padx=27)
-CTkLabel(master=main_view, text="Submit your feedback if needed to.", font=("Arial Black", 20), text_color="#2A8C55").pack(anchor="nw", pady=(30, 0), padx=27)
+CTkLabel(master=main_view, text="""Thank you for Confirming your order!
+         Or Feedback""", font=("Arial Black", 25), text_color="#2A8C55").pack(anchor="nw", pady=(29, 0), padx=27)
+CTkLabel(master=main_view, text="""Submit your feedback if needed to.
+         Or if Submited Feedback go to View Feedback
+         in Settings""", font=("Arial Black", 20), text_color="#2A8C55").pack(anchor="nw", pady=(30, 0), padx=27)
 CTkLabel(master=main_view, text="Orders submitted:", font=("Arial Black", 20), text_color="#2A8C55").pack(anchor="nw", pady=(33, 0), padx=27)
 
 # Fetch and display table data from the database

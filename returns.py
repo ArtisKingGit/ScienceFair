@@ -118,9 +118,9 @@ CTkButton(master = sidebar_frame, image = feedback_img, text = "Feedback", fg_co
 #CTkButton(master=sidebar_frame, image=package_img, text="Orders", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w", command= open_orders).pack(anchor="center", ipady=5, pady=(16, 0))
 
 #The order lists
-list_img_data = Image.open("list_icon.png")
-list_img = CTkImage(dark_image=list_img_data, light_image=list_img_data)
-CTkButton(master=sidebar_frame, image=list_img, text="Orders", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w").pack(anchor="center", ipady=5, pady=(16, 0))
+#list_img_data = Image.open("list_icon.png")
+#list_img = CTkImage(dark_image=list_img_data, light_image=list_img_data)
+#CTkButton(master=sidebar_frame, image=list_img, text="Orders", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w").pack(anchor="center", ipady=5, pady=(16, 0))
 
 #Returns
 returns_img_data = Image.open("returns_icon.png")
@@ -135,7 +135,7 @@ CTkButton(master=sidebar_frame, image=settings_img, text="Settings", fg_color="t
 #Account
 person_img_data = Image.open("person_icon.png")
 person_img = CTkImage(dark_image=person_img_data, light_image=person_img_data)
-CTkButton(master=sidebar_frame, image=person_img, text="Account", fg_color="transparent", font=("Arial Black", 25), hover_color="#207244", anchor="w").pack(anchor="center", ipady=5, pady=(160, 0))
+CTkButton(master=sidebar_frame, image=person_img, text="Account", fg_color="transparent", font=("Arial Bold", 14), hover_color="#207244", anchor="w").pack(anchor="center", ipady=5, pady=(160, 0))
 
 #Whats happening in the main form where the feedback page is
 main_view = CTkFrame(master=app, fg_color="#fff",  width=680, height=650, corner_radius=0)
