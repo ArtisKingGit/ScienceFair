@@ -50,10 +50,10 @@ def opensecondarywindow():
         messagebox.showwarning("Warning", "Input fields are empty")
         regist_entry.focus()
         
-    elif len(username) <=8 or len(password) <=8 or len(password_confirm <= 8):
+    elif len(username) <8 or len(password) <8 or len(password_confirm) <8:
         messagebox.showwarning("Warning", "Characters must be more than 8 Characters")
 
-    elif len(username) >14 or len(password) >14 or len(password_confirm > 14):
+    elif len(username) >14 or len(password) >14 or len(password_confirm) >14:
         messagebox.showwarning("Warning", "Characters must be less than 14 Characters")
         
     else:
